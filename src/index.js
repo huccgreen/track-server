@@ -1,18 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const authRoutes = require("./routes/authRoutes")
 const app = express();
 
-app.get('/' , (req , res)=>{
+
+app.get('/', (req, res) => {
     res.send("Hi there");
 });
 
+app.use(authRoutes)
+
 const mongoUri = "mongodb+srv://admin:admin@cluster0.nqal2.mongodb.net/?retryWrites=true&w=majority";
-mongoose.connect(mongoUri );
+mongoose.connect(mongoUri);
 
 
-mongoose.connection.on("connected" , ()=>{console.log("Connected to mongo instance")})
-mongoose.connection.on("error" , (err)=>{console.log("Error connecting ", err)} );
+mongoose.connection.on("connected", () => { console.log("Connected to mongo instance") })
+mongoose.connection.on("error", (err) => { console.log("Error connecting ", err) });
 
-app.listen(3000 , ()=>{
+app.listen(3000, () => {
     console.log("Listening on port  3000")
 });
