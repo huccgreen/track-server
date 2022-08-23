@@ -1,5 +1,7 @@
+require('./models/User');
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const authRoutes = require("./routes/authRoutes")
 const app = express();
 
@@ -7,7 +9,7 @@ const app = express();
 app.get('/', (req, res) => {
     res.send("Hi there");
 });
-
+app.use(bodyParser.json())
 app.use(authRoutes)
 
 const mongoUri = "mongodb+srv://admin:admin@cluster0.nqal2.mongodb.net/?retryWrites=true&w=majority";
