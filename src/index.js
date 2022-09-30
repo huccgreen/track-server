@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(trackRoutes);
 
-const mongoUri = "";
+const mongoUri = "mongodb+srv://admin:passwordpassword@cluster0.nqal2.mongodb.net/?retryWrites=true&w=majority";
 
 if (!mongoUri) {
   throw new Error(
@@ -22,7 +22,6 @@ if (!mongoUri) {
 }
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
-  useCreateIndex: true,
   useUnifiedTopology: true,
 });
 mongoose.connection.on("connected", () => {
